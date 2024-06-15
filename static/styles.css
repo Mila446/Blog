@@ -1,1 +1,84 @@
 
+html {
+    font-size: 62.5%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Cute Font", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 2rem;
+    padding: 20px;
+    background: #f1f1f1;
+}
+
+h2 {
+    font-size: 4rem;
+}
+
+.header h2{
+    font-size: 8rem;
+    line-height:0%;
+    letter-spacing: 2px;
+}
+
+.header {
+    padding: 2px;
+    font-size: 40px;
+    text-align: center;
+    background: white;
+}
+
+.leftcolumn {   
+    float: left;
+    width: 100%;
+}
+
+.card {
+    background-color:rgb(212, 186, 176);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: brown;
+}
+
+.card a {
+    text-decoration: none;
+    color: black;
+}
+
+.card:hover{
+    background-color:rgb(152, 184, 196);
+}
+
+.row:after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+.container {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+}
+
+.items {
+    flex:1 1 auto;
+}
+
+@media screen and (max-width: 800px) {
+    .leftcolumn, .rightcolumn {   
+        width: 100%;
+        padding: 0;
+    }
+}
+
+
+
+
