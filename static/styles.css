@@ -1,6 +1,7 @@
 
 html {
     font-size: 62.5%;
+    height: 100vh;
 }
 
 * {
@@ -56,6 +57,15 @@ h2 {
     background-color:rgb(152, 184, 196);
 }
 
+.single{
+    background-color:white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 15px;
+    border-style: solid;
+    margin-bottom:40px;
+}
+
 .row:after {
     content: " ";
     display: table;
@@ -72,13 +82,25 @@ h2 {
     flex:1 1 auto;
 }
 
+.btn {
+    border-style: solid;
+    border-radius:4px;
+
+    font-family: "Cute Font", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size:2rem;
+    text-transform: uppercase;
+    background-color:white;
+}
+
+.btn:hover {
+    background-color:rgb(152, 184, 196);
+}
+
 @media screen and (max-width: 800px) {
     .leftcolumn, .rightcolumn {   
         width: 100%;
         padding: 0;
     }
 }
-
-
-
-
