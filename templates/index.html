@@ -1,1 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- <meta charset="UTF-8"> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="static/styles.css">
+    </head>
+    <body>
+        {% if user.is_authenticated %}
+            <div class="header">
+                <h2>Milen's Blog</h2>
+            </div>
+            <div class="welcome">
+                <h4>Welcome {{user.username}}</h4>
+            </div>
+            <div class="row">
+                <div class="leftcolumn">
+                {% for post in posts reversed %}
+                <div class="card">
+                    <a href="post/{{post.id}}">
+                    <div class="container">
+                        <h2 class="item">{{post.title}}</h2>
+                        <h5 class="item">{{post.created_at}}</h5>
+                    </div>
+                    <!-- limits amount of words visible -->
+                    <p>{{post.body|truncatewords:20}}</p>
+                    </a>
+                </div>
+                {% endfor %}
+                </div>
+            </div>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button class='btn' type="submit">Log Out</button>
+            </form>
+        {% else %}
+            <p>You are not logged in.</p>
+            <div class="container2">
+                <a class='btn items2' href="{% url 'login' %}">Log In</a>
+                <a class='btn items2' href="{% url 'signup' %}">Sign Up</a>
+            </div>
+        {% endif %}
+    </body>
+</html>
 
