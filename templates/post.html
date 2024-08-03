@@ -1,1 +1,57 @@
+{% load static %}
 
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- <meta charset="UTF-8"> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+    </head>
+<body>
+    <div class="header">
+        <h2>Milen's Blog</h2>
+    </div>
+    
+    <div class="single">
+        <h2>{{posts.title}}</h2>
+        <h5>{{posts.created_at}}</h5>
+        <p>{{posts.body}}</p>
+    </div>   
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class='btn' type="submit">Comment!</button>
+    </form>
+    <a href="/"><button class="btn">Back to Posts!</button></a>
+
+    <h3>Comments</h3>
+    <button type="button" class="collapsible">View Comments</button>
+    <ul>
+        {% for comment in comments %}
+        <div class="single">
+            <h2>{{comment.created_at}}</h2>
+            {% if comment.author == user %}
+                <h5>you</h5>
+            {% elif comment.author.is_superuser %}
+                <h5>op</h5>
+            {% else %}
+                <h5>{{comment.author}}</h5>
+            {% endif %}
+            <p>{{comment.content}}</p>
+            {% if comment.author == user %}
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_id" value="deletion">
+                    <input type="hidden" name="comment_id" value="{{comment.id}}">
+                    <button class='btn' type="submit">Delete?</button>
+                </form>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </ul>
+</body>
+</html>
